@@ -30,6 +30,6 @@ public class Movie {
 	}
 	
 	public String toString() {
-		return getReleaseYear() + "\t" + getMovieName() + "\t" + getRuntime() + "\t" + getSource();
+		return getReleaseYear() + "\\t" + getMovieName() + "\\t" + getRuntime() + "\\t" + getSource();
 	}
 }
