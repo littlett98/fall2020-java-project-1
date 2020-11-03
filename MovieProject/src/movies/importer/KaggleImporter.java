@@ -12,9 +12,9 @@ public class KaggleImporter extends Processor {
 		ArrayList<String> newList = new ArrayList<String>();
 		for (int i = 0; i < kaggle.size(); i++) {
 			String[] column = kaggle.get(i).split("\\t");
-			if (!(column.length < 16)) {
+			if (!(column.length < 19)) {
 				// release Year / title / runtime / source
-				String entry = column[12] + "\\t" + column[15] + "\\t" + column[13] + "\\t" + "kaggle";
+				String entry = column[20] + "\t" + column[15] + "\t" + column[13] + "\t" + "kaggle";
 				newList.add(entry);
 			}
 		}
