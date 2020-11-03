@@ -5,33 +5,18 @@ import java.io.IOException;
 public class ImportPipeline {
 	
 	public static void main(String[] args) {
-		KaggleImporter Kaggle = new KaggleImporter("source", "output");
-		ImdbImporter Imdb = new ImdbImporter("source","output");
-		Processor[] processorArray = new Processor[] {
-		    	//load feeds of both files
-		        new Processor() { public void execute() throws IOException { Kaggle.execute(); } },
-		        new Processor() { public void execute() throws IOException { Imdb.execute(); } },
-		        //normalize the files
-		        new Processor() { public void execute() throws IOException { goSouth(); } },
-		        // validate the files
-		        new Processor() { public void execute() throws IOException { goEast(); } },
-		        // dedupe the files
-		        new Processor() { public void execute() throws IOException { goWest(); } },
-		    };
+		Processor[] processorArray = new Processor[5];
+		processorArray[0] = (Processor) new KaggleImporter("src", "output");
+		processorArray[1] = (Processor) new ImdbImporter("src", "output");
+		processorArray[2] = (Processor) new ValidatorKaggle("src", "output");
+		processorArray[3] = (Processor) new ValidatorImdb("src", "output");
+		processorArray[4] = (Processor) new Deduper("src", "output");
 	}
 	
 	public static void processAll(Processor[] processorArray) throws IOException {
 		for (int i = 0; i < processorArray.length; i++) {
-			execute(processorArray, i);
+			processorArray[i].execute();
 		}
 	}
-	
-	static interface Processor {
-        void execute() throws IOException;
-    }
-	
-	public static void execute(Processor[] processorArray, int index) throws IOException {
-        processorArray[index].execute();
-    }
 	
 }
