@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
 
-import junit.framework.Assert;
 import movies.importer.KaggleImporter;
 import java.util.*;
 
