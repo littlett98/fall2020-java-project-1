@@ -2,9 +2,9 @@ package movies.importer;
 
 import java.util.ArrayList;
 
-public class Validator extends Processor{
+public class ValidatorImdb extends Processor{
 	
-	public Validator(String src, String dest) {
+	public ValidatorImdb(String src, String dest) {
 		super(src, dest, false);
 	}
 	
