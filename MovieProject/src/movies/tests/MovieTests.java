@@ -11,7 +11,7 @@ class MovieTests {
 	void testGetMethods() {
 		Movie m = new Movie("1994", "The Lion King", "1h 58m", "The Internet");
 		assertEquals("1994", m.getReleaseYear());
-		assertEquals("The Lion King", m.getMovieName());
+		assertEquals("The Lion King", m.getName());
 		assertEquals("1h 58m", m.getRuntime());
 		assertEquals("The Internet", m.getSource());
 	}
