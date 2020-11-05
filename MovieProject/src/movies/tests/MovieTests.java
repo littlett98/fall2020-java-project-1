@@ -7,6 +7,10 @@ import org.junit.jupiter.api.Test;
 
 class MovieTests {
 
+	/** Tests all the get methods within the Movie class
+	 * @author Trevor McCubbin
+	 * 
+	 */
 	@Test
 	void testGetMethods() {
 		Movie m = new Movie("1994", "The Lion King", "1h 58m", "The Internet");
@@ -16,6 +20,10 @@ class MovieTests {
 		assertEquals("The Internet", m.getSource());
 	}
 	
+	/** Tests that the toString method returns the desired String in the correct format
+	 * @author Trevor McCubbin
+	 * 
+	 */
 	@Test
 	void testToStringMethod() {
 		Movie m = new Movie("1994", "The Lion King", "1h 58m", "The Internet");
