@@ -27,11 +27,11 @@ public class ValidatorKaggle extends Processor{
 		ArrayList<String> normalized = new ArrayList<String>();
 		for (int i = 0; i < input.size(); i++) {
 			try {
-				String[] column = input.get(i).split("\t");
+				String[] column = input.get(i).split("\t", -1);
 				// splits the runtime column by spaces into a String array
 				String[] runtime = column[2].split("\\s+");
 				// release Year / title / runtime / source
-				String entry = column[0] + "\t" + column[1].toLowerCase() + "\t" + runtime[0] + "\t" + "kaggle";
+				String entry = column[0] + "\t" + column[1].toLowerCase() + "\t" + runtime[0] + "\t" + column[3];
 				normalized.add(entry);
 			}
 			catch(ArrayIndexOutOfBoundsException e) {
