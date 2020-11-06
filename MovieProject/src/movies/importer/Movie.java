@@ -80,21 +80,16 @@ public class Movie {
 		// instance of operator powerpoint, if it isnt a movie should return false
 		// 
 		Movie m = (Movie)o;
-		try {
-			if (!(m instanceof Movie)) {
-				return false;
-			}
-			if (getName().equals(m.getName()) && getReleaseYear().equals(m.getReleaseYear())){
-				int m1Runtime = Integer.parseInt(getRuntime());
-				int m2Runtime = Integer.parseInt(m.getRuntime());
-				int difference = m2Runtime - m1Runtime;
-				if (difference <= 5 && difference >= -5) {
-					return true;
-				}
-			}
+		if (!(m instanceof Movie)) {
+			return false;
 		}
-		catch (NumberFormatException e) {
-			System.out.println("Something is wrong with the number format of get runtime");
+		if (getName().equals(m.getName()) && getReleaseYear().equals(m.getReleaseYear())){
+			int m1Runtime = Integer.parseInt(getRuntime());
+			int m2Runtime = Integer.parseInt(m.getRuntime());
+			int difference = m2Runtime - m1Runtime;
+			if (difference <= 5 && difference >= -5) {
+				return true;
+			}
 		}
 		return false;
 	}

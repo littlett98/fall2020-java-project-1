@@ -5,8 +5,12 @@ import java.io.IOException;
 public class ImportPipeline {
 
 	/**
+	 * Main method for the project.
+	 * Creates all the sources for the files to process and all the objects needed for processing.
 	 * @param args
 	 * @throws IOException
+	 * @author Jessie Rambeloson
+	 * @author Trevor McCubbin
 	 */
 	public static void main(String[] args) throws IOException{
 		
@@ -43,8 +47,10 @@ public class ImportPipeline {
 	}
 	
 	/**
-	 * @param processors
+	 * This method runs through the process method in each class in the correct order 
+	 * @param processors An array of processors representing the methods needed to be executed
 	 * @throws IOException
+	 * @author Jessie Rambeloson
 	 */
 	public static void processAll(Processor[] processors) throws IOException{
 		for (int i = 0; i < processors.length; i++) {

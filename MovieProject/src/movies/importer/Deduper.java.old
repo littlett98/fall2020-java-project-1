@@ -4,23 +4,10 @@ import java.util.ArrayList;
 
 public class Deduper extends Processor{
 	
-	/** Constructor method to create a new Deduper
-	 * @param src A String representing the source directory
-	 * @param dest A String representing the destination directory
-	 * @author Jessie Rambeloson
-	 */
 	public Deduper(String src, String dest) {
 		super(src, dest, false);
 	}
 	
-	/**
-	 * This method compares values within the input array to find any duplicates within them and remove the duplicates.
-	 * @input contains the files' lines in the correct movie format
-	 * @return will return the input without duplicates
-	 * @author Jessie Rambeloson
-	 * @author Trevor McCubbin
-	 * Was written mostly by Jessie. Trevor made a few edits.
-	 */
 	public ArrayList<String> process(ArrayList<String> input){
 		
 		//ArrayList<String> noDuplicates = new ArrayList<String>();
@@ -34,10 +21,10 @@ public class Deduper extends Processor{
 		}
 		
 		//Find duplicated movies
-		for (int i = 0; i < movies.size(); i++) {
-			if (i<input.size()) {
-			for (int j = i + 1; j < movies.size()-1; j++) {
-				if (j < input.size()) {
+		int moviesArraySize = movies.size();
+		for (int i = 0; i < moviesArraySize; i++) {
+			for (int j = i + 1; j < moviesArraySize; j++) {
+				
 				//create a merged movie when duplicated movie is found
 				if (movies.get(i).equals(movies.get(j))) {
 					String release = movies.get(i).getReleaseYear();
@@ -47,28 +34,34 @@ public class Deduper extends Processor{
 					
 					//if the sources are similar, keep the source once
 					//if not, combine the sources
+					
 					if (movies.get(i).getSource().equals(movies.get(j).getSource())) {
 						src = movies.get(i).getSource();
 					}
 					else {
 						src = movies.get(i).getSource() + ";" + movies.get(j).getSource();
 					}
-					
-					Movie merge = new Movie(release, title, runtime, src);
-					input.remove(j);		//remove duplicate from the input ArrayList
-					
-					String[] inputMovie = input.get(i).split("\t");
-					inputMovie[2] = merge.getRuntime();
-					inputMovie[3] = merge.getSource();
-					
-					String newMovie = inputMovie[0];
-					for (int a = 1; a < inputMovie.length; a++) {
-						newMovie += "\t" + inputMovie[a];
+					try {
+						Movie merge = new Movie(release, title, runtime, src);
+						input.remove(j);		//remove duplicate from the input ArrayList
+						String[] inputMovie = input.get(i).split("\t");
+						inputMovie[2] = merge.getRuntime();
+						String newMovie = inputMovie[0];
+						for (int a = 1; a < inputMovie.length; a++) {
+							newMovie += "\t" + inputMovie[a];
+						}
+						input.set(i, newMovie);		//replace duplicated movie with merged movie
+						moviesArraySize = movies.size();
 					}
-					input.set(i, newMovie);		//replace duplicated movie with merged movie
-				}}}
+					catch(IndexOutOfBoundsException e) {
+						System.out.println("Index out of bounds");
+						System.out.println("i value: " + i);
+						System.out.println("j value: " + j);
+					}
+				}
 			}
 		}
 		return input;
 	}
 }
+	
