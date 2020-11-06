@@ -26,8 +26,9 @@ public class Deduper extends Processor{
 		
 		//Find duplicated movies
 		for (int i = 0; i < movies.size(); i++) {
+			if (i<input.size()) {
 			for (int j = i + 1; j < movies.size()-1; j++) {
-				
+				if (j < input.size()) {
 				//create a merged movie when duplicated movie is found
 				if (movies.get(i).equals(movies.get(j))) {
 					String release = movies.get(i).getReleaseYear();
@@ -56,7 +57,7 @@ public class Deduper extends Processor{
 						newMovie += "\t" + inputMovie[a];
 					}
 					input.set(i, newMovie);		//replace duplicated movie with merged movie
-				}
+				}}}
 			}
 		}
 		return input;
