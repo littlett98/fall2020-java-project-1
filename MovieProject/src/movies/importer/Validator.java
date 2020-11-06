@@ -40,18 +40,19 @@ public class Validator extends Processor{
 		/*throws a NumberFormatException if the release year/runtime
 		 *cannot be converted to in
 		*/
-		try {
-			int release;
-			int runtime;
-			for (int i = 0; i < noInvalidMovies.size(); i++) {
-				String[] movie = noInvalidMovies.get(i).split("\t");
+		int release;
+		int runtime;
+		for (int i = 0; i < noInvalidMovies.size(); i++) {
+			String[] movie = noInvalidMovies.get(i).split("\t");
+			try {
 				release = Integer.parseInt(movie[0]);
 				runtime = Integer.parseInt(movie[2]);
 			}
-		}
-		catch (NumberFormatException e){
-			System.out.println("The release year or the runtime could not be converted to a number.");
+
+			catch (NumberFormatException e){
+				noInvalidMovies.remove(i);
+			}	
 		}
 		return noInvalidMovies;
-	}
+	}	
 }
