@@ -8,6 +8,10 @@ public class Deduper extends Processor{
 		super(src, dest, false);
 	}
 	
+	/**
+	 * @input contains the files' lines in the correct movie format
+	 * @return will return the input without duplicates
+	 */
 	public ArrayList<String> process(ArrayList<String> input){
 		
 		//ArrayList<String> noDuplicates = new ArrayList<String>();
@@ -22,7 +26,7 @@ public class Deduper extends Processor{
 		
 		//Find duplicated movies
 		for (int i = 0; i < movies.size(); i++) {
-			for (int j = i + 1; j < movies.size(); j++) {
+			for (int j = i + 1; j < movies.size()-1; j++) {
 				
 				//create a merged movie when duplicated movie is found
 				if (movies.get(i).equals(movies.get(j))) {
@@ -42,8 +46,11 @@ public class Deduper extends Processor{
 					
 					Movie merge = new Movie(release, title, runtime, src);
 					input.remove(j);		//remove duplicate from the input ArrayList
+					
 					String[] inputMovie = input.get(i).split("\t");
 					inputMovie[2] = merge.getRuntime();
+					inputMovie[3] = merge.getSource();
+					
 					String newMovie = inputMovie[0];
 					for (int a = 1; a < inputMovie.length; a++) {
 						newMovie += "\t" + inputMovie[a];
