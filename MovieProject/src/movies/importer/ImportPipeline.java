@@ -30,7 +30,7 @@ public class ImportPipeline {
 		//Creating all the necessary processors
 		ImdbImporter imdb = new ImdbImporter(imdb_source, processed);
 		KaggleImporter kaggle = new KaggleImporter(kaggle_source, processed);
-		ValidatorKaggle normalizer= new ValidatorKaggle(processed, normalized);
+		Normalizer normalizer= new Normalizer(processed, normalized);
 		Validator validator = new Validator(normalized, validated);
 		Deduper deduper = new Deduper(validated, deduped);
 		
