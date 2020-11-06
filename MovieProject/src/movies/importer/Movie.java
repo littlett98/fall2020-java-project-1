@@ -77,9 +77,13 @@ public class Movie {
 	 */
 	@Override
 	public boolean equals(Object o) {
-		
+		// instance of operator powerpoint, if it isnt a movie should return false
+		// 
 		Movie m = (Movie)o;
 		try {
+			if (!(m instanceof Movie)) {
+				return false;
+			}
 			if (getName().equals(m.getName()) && getReleaseYear().equals(m.getReleaseYear())){
 				int m1Runtime = Integer.parseInt(getRuntime());
 				int m2Runtime = Integer.parseInt(m.getRuntime());

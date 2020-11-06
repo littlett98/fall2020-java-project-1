@@ -45,5 +45,14 @@ class MovieTests {
 		assertEquals(true,m.equals(m2));
 		assertEquals(false, m.equals(m3));
 	}
+	
+	/** Tests the equal method casts an object into a movie
+	 * 
+	 */
+	@Test
+	void testEqualsCast() {
+		Object m = new Object();
+		assertEquals(true,m.equals(m));
+	}
 
 }
