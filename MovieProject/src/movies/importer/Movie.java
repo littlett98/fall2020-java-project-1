@@ -72,20 +72,25 @@ public class Movie {
 	/**
 	 * Overrides the default equals method to calculate whether 2 object are identical or not
 	 * @author Jessie Rambeloson
+	 * @author Trevor McCubbin
 	 * @return Returns a boolean representing whether both object are the same or not
 	 */
 	@Override
 	public boolean equals(Object o) {
 		
 		Movie m = (Movie)o;
-		
-		if (getName().equals(m.getName()) && getReleaseYear().equals(m.getReleaseYear())){
-			int m1Runtime = Integer.parseInt(getRuntime());
-			int m2Runtime = Integer.parseInt(m.getRuntime());
-			int difference = m2Runtime - m1Runtime;
-			if (difference <= 5 && difference >= -5) {
-				return true;
+		try {
+			if (getName().equals(m.getName()) && getReleaseYear().equals(m.getReleaseYear())){
+				int m1Runtime = Integer.parseInt(getRuntime());
+				int m2Runtime = Integer.parseInt(m.getRuntime());
+				int difference = m2Runtime - m1Runtime;
+				if (difference <= 5 && difference >= -5) {
+					return true;
+				}
 			}
+		}
+		catch (NumberFormatException e) {
+			System.out.println("Something is wrong with the number format of get runtime");
 		}
 		return false;
 	}
